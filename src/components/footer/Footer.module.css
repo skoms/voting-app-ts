@@ -1,2 +1,18 @@
 .container {
+	position: fixed;
+	bottom: 0;
+	height: 1.5rem;
+	display: flex;
+	width: 100vw;
+	align-items: center;
+	justify-content: center;
+	background-color: #181a1b;
+}
+
+.githubLink:link {
+	color: #790079;
+}
+
+.githubLink:visited {
+	color: #8a008a;
 }

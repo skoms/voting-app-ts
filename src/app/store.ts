@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import listReducer from '../components/list/listSlice'
+import voteDisplayReducer from '../pages/voteDisplay/voteDisplaySlice'
 
 export const store = configureStore({
 	reducer: {
 		list: listReducer,
+		voteDisplay: voteDisplayReducer,
 	},
 })
 

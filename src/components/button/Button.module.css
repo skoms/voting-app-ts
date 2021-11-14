@@ -1,0 +1,54 @@
+@keyframes pulsating {
+	from {
+		transform: scale(1);
+	}
+	70% {
+		transform: scale(1);
+	}
+	80% {
+		transform: scale(1.06);
+	}
+	90% {
+		transform: scale(0.94);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+
+.button {
+	border-radius: 0.35rem;
+	background: gray;
+	color: white;
+	border: none;
+	box-shadow: none;
+	margin: 0.25rem 0.1rem;
+	padding: 0.2rem 0.4rem;
+	transition: all ease-in-out 0.3s;
+}
+
+.button:hover {
+	background: rgb(161, 161, 161);
+}
+
+.primary {
+	composes: button;
+	background: rgb(0, 138, 0);
+}
+
+.primary:hover {
+	background: rgb(0, 201, 0);
+}
+
+.secondary {
+	composes: button;
+	background: rgb(24, 111, 199);
+}
+
+.secondary:hover {
+	background: rgb(41, 148, 255);
+}
+
+button:local(.pulsating) :local {
+	animation: pulsating 6s 3s infinite ease-in-out;
+}

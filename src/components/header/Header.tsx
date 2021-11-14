@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 export const Header: React.FC = () => {
 	return (
-		<div>
+		<div className={styles.container}>
 			<div className={styles.logo}>
 				<h1 className={utilStyles.heading2Xl}>Voting App</h1>
 			</div>

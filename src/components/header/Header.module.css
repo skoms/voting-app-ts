@@ -1,7 +1,15 @@
 .container {
+	position: fixed;
+	top: 0;
+	display: flex;
+	width: 100vw;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #181a1b;
 }
 
 .logo {
+	margin-left: 1rem;
 }
 
 .title {
@@ -11,4 +19,5 @@ nav {
 }
 
 nav a {
+	margin-right: 1rem;
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from '../button/Button'
 import styles from './Vote.module.css'
 
 interface VoteProps {
@@ -19,6 +20,8 @@ export const Vote: React.FC<VoteProps> = ({
 			<h3>{title}</h3>
 			<p>Votes: {votes}</p>
 			<p>Time left: {timeLeft}</p>
+			<Button content='View' buttontype='primary' animation='pulsating' />
+			<Button content='Vote' buttontype='secondary' />
 		</div>
 	)
 }
