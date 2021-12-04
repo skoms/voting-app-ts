@@ -8,7 +8,7 @@
 		'buttons buttons';
 	gap: 0.5rem;
 	width: fit-content;
-	min-width: 16rem;
+	min-width: 24rem;
 	background-color: rgba(77, 0, 0, 0.3);
 	border-radius: 0.75rem;
 	padding: 0.5rem;

@@ -5,43 +5,85 @@ const initialState = {
 	votes: [
 		{
 			id: 1,
-			title: 'test title',
-			votes: 5,
+			title: 'What is your gender?',
+			options: [
+				{
+					option: 'Female',
+					votes: 7,
+				},
+				{
+					option: 'Male',
+					votes: 9,
+				},
+				{
+					option: 'Other',
+					votes: 3,
+				},
+			],
+			votes: 19,
 			timeLeft: '5 days',
 			isActive: true,
 		},
 		{
 			id: 2,
-			title: 'test title',
-			votes: 5,
+			title: 'Is the answer yes?',
+			options: [
+				{
+					option: 'Yes',
+					votes: 12,
+				},
+				{
+					option: 'No',
+					votes: 6,
+				},
+				{
+					option: 'Maybe',
+					votes: 23,
+				},
+			],
+			votes: 41,
 			timeLeft: '5 days',
 			isActive: true,
 		},
 		{
 			id: 3,
-			title: 'test title',
-			votes: 5,
+			title: 'What do you think of globalization?',
+			options: [
+				{
+					option: 'Good',
+					votes: 23,
+				},
+				{
+					option: 'Bad',
+					votes: 8,
+				},
+				{
+					option: "I don't know",
+					votes: 4,
+				},
+			],
+			votes: 35,
 			timeLeft: '5 days',
-			isActive: true,
+			isActive: false,
 		},
 		{
 			id: 4,
-			title: 'test title',
-			votes: 5,
-			timeLeft: '5 days',
-			isActive: false,
-		},
-		{
-			id: 5,
-			title: 'test title',
-			votes: 5,
-			timeLeft: '5 days',
-			isActive: false,
-		},
-		{
-			id: 6,
-			title: 'test title',
-			votes: 5,
+			title: 'Drugs are bad, mkay?',
+			options: [
+				{
+					option: 'Mkay',
+					votes: 7,
+				},
+				{
+					option: 'No mkay',
+					votes: 3,
+				},
+				{
+					option: "I don't know dude",
+					votes: 13,
+				},
+			],
+			votes: 23,
 			timeLeft: '5 days',
 			isActive: false,
 		},
@@ -51,9 +93,15 @@ const initialState = {
 export interface VoteData {
 	id: number
 	title: string
+	options: Option[]
 	votes: number
 	timeLeft: string
 	isActive: boolean
+}
+
+export interface Option {
+	option: string
+	votes: number
 }
 
 export const voteSlice = createSlice({
