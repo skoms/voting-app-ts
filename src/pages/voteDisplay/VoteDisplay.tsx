@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { selectVotes } from '../../components/list/listSlice'
+import { selectVotes } from '../../components/voteSlice'
 import { selectVote, setVote } from './voteDisplaySlice'
 
 export const VoteDisplay: React.FC = () => {

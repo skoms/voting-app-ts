@@ -26,7 +26,7 @@ const App: React.FC = () => {
 						<Route path='votes/finished' element={<FinishedVotes />} />
 						<Route path='votes/:id' element={<VoteDisplay />} />
 						<Route path='not-found' element={<NotFound />} />
-						<Route path='*' element={<NotFound />} />
+						<Route path='*' element={<NotFound />} /> {/* Catch all route */}
 					</Routes>
 				</main>
 				<Footer />

@@ -1,5 +1,44 @@
 .container {
+	justify-self: center;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas:
+		'title title'
+		'votes time'
+		'buttons buttons';
+	gap: 0.5rem;
+	width: fit-content;
+	min-width: 16rem;
+	background-color: rgba(77, 0, 0, 0.3);
+	border-radius: 0.75rem;
+	padding: 0.5rem;
+	margin: 0.5rem 0;
 }
 
 .active {
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.title {
+	grid-area: title;
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin: 0 0.5rem 0 0;
+}
+
+.votes {
+	grid-area: votes;
+	margin: 0 0.5rem 0 0;
+}
+
+.timeLeft {
+	grid-area: time;
+	margin: 0 0.5rem 0 0;
+}
+
+.buttons {
+	grid-area: buttons;
+	display: flex;
+	width: 100%;
+	justify-content: center;
 }

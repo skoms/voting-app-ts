@@ -1,7 +1,7 @@
 import React from 'react'
 import { List } from '../../components/list/List'
 import { useAppSelector } from '../../app/hooks'
-import { selectVotes } from '../../components/list/listSlice'
+import { selectVotes } from '../../components/voteSlice'
 import { Helmet } from 'react-helmet'
 
 export const FinishedVotes: React.FC = () => {

@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Home.module.css'
 import { List, VoteData } from '../../components/list/List'
 import { useAppSelector } from '../../app/hooks'
-import { selectVotes } from '../../components/list/listSlice'
+import { selectVotes } from '../../components/voteSlice'
 import { Helmet } from 'react-helmet'
 
 export const Home: React.FC = () => {

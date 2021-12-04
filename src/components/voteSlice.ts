@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from '../../app/store'
-import { VoteData } from './List'
+import { RootState } from '../app/store'
+import { VoteData } from './list/List'
 
 const initialState = {
 	votes: [
@@ -49,8 +49,8 @@ const initialState = {
 	],
 }
 
-export const listSlice = createSlice({
-	name: 'list',
+export const voteSlice = createSlice({
+	name: 'vote',
 	initialState,
 	reducers: {
 		addVote: (state, action) => {
@@ -59,7 +59,7 @@ export const listSlice = createSlice({
 	},
 })
 
-export const { addVote } = listSlice.actions
-export const selectVotes = (state: RootState): VoteData[] => state.list.votes
+export const { addVote } = voteSlice.actions
+export const selectVotes = (state: RootState): VoteData[] => state.vote.votes
 
-export default listSlice.reducer
+export default voteSlice.reducer
