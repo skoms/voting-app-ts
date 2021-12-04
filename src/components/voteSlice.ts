@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../app/store'
-import { VoteData } from './list/List'
 
 const initialState = {
 	votes: [
@@ -47,6 +46,14 @@ const initialState = {
 			isActive: false,
 		},
 	],
+}
+
+export interface VoteData {
+	id: number
+	title: string
+	votes: number
+	timeLeft: string
+	isActive: boolean
 }
 
 export const voteSlice = createSlice({

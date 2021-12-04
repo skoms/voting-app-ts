@@ -1,16 +1,9 @@
 import React from 'react'
 import { Vote } from '../vote/Vote'
+import { VoteData } from '../voteSlice'
 
 interface ListProps {
 	listItems: VoteData[]
-}
-
-export interface VoteData {
-	id: number
-	title: string
-	votes: number
-	timeLeft: string
-	isActive: boolean
 }
 
 export const List: React.FC<ListProps> = ({ listItems }: ListProps) => {

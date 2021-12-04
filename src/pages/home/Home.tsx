@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './Home.module.css'
-import { List, VoteData } from '../../components/list/List'
+import { List } from '../../components/list/List'
+import { VoteData } from '../../components/voteSlice'
 import { useAppSelector } from '../../app/hooks'
 import { selectVotes } from '../../components/voteSlice'
 import { Helmet } from 'react-helmet'
