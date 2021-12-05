@@ -10,9 +10,7 @@
 
 .logo {
 	margin-left: 1rem;
-}
-
-.title {
+	cursor: pointer;
 }
 
 nav {

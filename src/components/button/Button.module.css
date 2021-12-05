@@ -29,6 +29,7 @@
 
 .button:hover {
 	background: rgb(161, 161, 161);
+	cursor: pointer;
 }
 
 .primary {

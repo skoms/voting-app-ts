@@ -13,6 +13,7 @@ export const List: React.FC<ListProps> = ({ listItems }: ListProps) => {
 				if ('votes' in item) {
 					return (
 						<Vote
+							id={item.id}
 							isActive={item.isActive}
 							title={item.title}
 							timeLeft={item.timeLeft}
