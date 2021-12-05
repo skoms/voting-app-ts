@@ -2,6 +2,10 @@ import React from 'react'
 import { Button } from '../button/Button'
 import styles from './Vote.module.css'
 import { useNavigate } from 'react-router'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { setVote } from '../../pages/voteDisplay/voteDisplaySlice'
+import { toggleIsActive } from '../voteModal/voteModalSlice'
+import { selectVotes, VoteData } from '../voteSlice'
 
 interface VoteProps {
 	id: number
@@ -19,6 +23,14 @@ export const Vote: React.FC<VoteProps> = ({
 	isActive,
 }: VoteProps) => {
 	const navigate = useNavigate()
+	const dispatch = useAppDispatch()
+	const votesArr = useAppSelector(selectVotes)
+
+	const openModal = (id: number, votes: VoteData[]) => {
+		dispatch(setVote({ id, votes }))
+		dispatch(toggleIsActive(true))
+	}
+
 	return (
 		<div className={`${styles.container} ${isActive ? styles.active : ''}`}>
 			<h3 className={styles.title}>{title}</h3>
@@ -33,7 +45,11 @@ export const Vote: React.FC<VoteProps> = ({
 					animation='pulsating'
 					onClick={() => navigate(`/votes/${id}`)}
 				/>
-				<Button content='Vote' buttontype='secondary' />
+				<Button
+					content='Vote'
+					buttontype='secondary'
+					onClick={() => openModal(id, votesArr)}
+				/>
 			</div>
 		</div>
 	)

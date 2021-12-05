@@ -5,9 +5,11 @@ import { selectVote } from '../../pages/voteDisplay/voteDisplaySlice'
 import { useEffectOnce } from 'react-use'
 import { Option } from '../voteSlice'
 import { Button } from '../button/Button'
+import { selectIsActive } from './voteModalSlice'
 
 export const VoteModal: React.FC = () => {
 	const vote = useAppSelector(selectVote)
+	const isActive = useAppSelector(selectIsActive)
 	const [selectedOption, setSelectedOption] = useState<Option | null>(null)
 
 	useEffectOnce(() => {
@@ -15,9 +17,13 @@ export const VoteModal: React.FC = () => {
 			setSelectedOption(vote.options[0])
 		}
 	})
+
+	const submit = () => {
+		return selectedOption //! TEMPORARY
+	}
 	return (
 		vote && (
-			<div>
+			<div className={`${styles.container} ${!isActive && styles.hidden}`}>
 				<h1 className={styles.title}>{vote.title}</h1>
 				<div className={styles.options}>
 					{vote.options.map((option: Option, idx) => (
@@ -27,7 +33,7 @@ export const VoteModal: React.FC = () => {
 						</div>
 					))}
 				</div>
-				<Button content='Submit' buttontype='primary' />
+				<Button content='Submit' buttontype='primary' onClick={submit} />
 			</div>
 		)
 	)
