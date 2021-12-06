@@ -45,11 +45,13 @@ export const Vote: React.FC<VoteProps> = ({
 					animation='pulsating'
 					onClick={() => navigate(`/votes/${id}`)}
 				/>
-				<Button
-					content='Vote'
-					buttontype='secondary'
-					onClick={() => openModal(id, votesArr)}
-				/>
+				{isActive && (
+					<Button
+						content='Vote'
+						buttontype='secondary'
+						onClick={() => openModal(id, votesArr)}
+					/>
+				)}
 			</div>
 		</div>
 	)

@@ -1,39 +1,73 @@
 import styles from './VoteModal.module.css'
-import React, { useState } from 'react'
-import { useAppSelector } from '../../app/hooks'
+import React, { useState, useEffect, useRef } from 'react'
+import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import { selectVote } from '../../pages/voteDisplay/voteDisplaySlice'
-import { useEffectOnce } from 'react-use'
 import { Option } from '../voteSlice'
 import { Button } from '../button/Button'
-import { selectIsActive } from './voteModalSlice'
+import { selectIsActive, toggleIsActive } from './voteModalSlice'
+import { useClickAway } from 'react-use'
 
 export const VoteModal: React.FC = () => {
 	const vote = useAppSelector(selectVote)
+	const dispatch = useAppDispatch()
 	const isActive = useAppSelector(selectIsActive)
 	const [selectedOption, setSelectedOption] = useState<Option | null>(null)
+	const modalRef = useRef(null)
 
-	useEffectOnce(() => {
+	const closeModal = () => {
+		dispatch(toggleIsActive(false))
+	}
+
+	const submit = () => {
+		closeModal()
+		return selectedOption //! TEMPORARY
+	}
+
+	const select = (e: React.MouseEvent<HTMLElement>) => {
+		if (vote) {
+			const { value } = e.currentTarget.dataset
+			const newVote = vote.options.find((option) => option.option === value)
+			newVote && setSelectedOption(newVote)
+		}
+	}
+
+	useEffect(() => {
 		if (vote) {
 			setSelectedOption(vote.options[0])
 		}
-	})
+	}, [vote, isActive])
 
-	const submit = () => {
-		return selectedOption //! TEMPORARY
-	}
+	useClickAway(modalRef, closeModal)
+
 	return (
 		vote && (
-			<div className={`${styles.container} ${!isActive && styles.hidden}`}>
-				<h1 className={styles.title}>{vote.title}</h1>
-				<div className={styles.options}>
-					{vote.options.map((option: Option, idx) => (
-						<div className={styles.option} key={`option${idx}`}>
-							<input type='radio' name={`option${idx}`} id={`option${idx}`} />
-							<label htmlFor={`option${idx}`}>{option.option}</label>
-						</div>
-					))}
+			<div className={`${styles.container} ${isActive && styles.active}`}>
+				<div className={styles.modal} ref={modalRef}>
+					<button onClick={() => closeModal()} className={styles.exitButton}>
+						X
+					</button>
+					<h1 className={styles.title}>{vote.title}</h1>
+					<div className={styles.options}>
+						{vote.options.map((option: Option, idx) => (
+							<p
+								className={`${styles.option} ${
+									selectedOption === option ? styles.selected : ''
+								}`}
+								data-value={option.option}
+								key={`option${idx}`}
+								onClick={select}
+							>
+								{option.option}
+							</p>
+						))}
+					</div>
+					<Button
+						className={styles.submitButton}
+						content='Submit'
+						buttontype='primary'
+						onClick={submit}
+					/>
 				</div>
-				<Button content='Submit' buttontype='primary' onClick={submit} />
 			</div>
 		)
 	)
