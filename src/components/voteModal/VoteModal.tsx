@@ -2,7 +2,7 @@ import styles from './VoteModal.module.css'
 import React, { useState, useEffect, useRef } from 'react'
 import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import { selectVote } from '../../pages/voteDisplay/voteDisplaySlice'
-import { Option } from '../voteSlice'
+import { Option, submitVote } from '../voteSlice'
 import { Button } from '../button/Button'
 import { selectIsActive, toggleIsActive } from './voteModalSlice'
 import { useClickAway } from 'react-use'
@@ -19,8 +19,21 @@ export const VoteModal: React.FC = () => {
 	}
 
 	const submit = () => {
-		closeModal()
-		return selectedOption //! TEMPORARY
+		if (vote && selectedOption) {
+			dispatch(
+				submitVote({
+					...vote,
+					votes: vote.votes + 1,
+					options: vote.options.map((opt) => {
+						if (opt === selectedOption) {
+							return { ...selectedOption, votes: selectedOption.votes + 1 }
+						}
+						return opt
+					}),
+				})
+			)
+			closeModal()
+		}
 	}
 
 	const select = (e: React.MouseEvent<HTMLElement>) => {

@@ -23,6 +23,9 @@ export const VoteDisplay: React.FC = () => {
 	useEffect(() => {
 		dispatch(setVote({ votes, id }))
 		if (vote) {
+			if (!vote.voted && vote.isActive) {
+				navigate('/')
+			}
 			setData({
 				labels: [...vote.options.map((option) => option.option)],
 				datasets: [
@@ -50,13 +53,15 @@ export const VoteDisplay: React.FC = () => {
 				],
 			})
 		}
-	}, [dispatch, id, votes, vote])
+	}, [dispatch, navigate, id, votes, vote])
 
 	useEffect(() => {
-		if (!loading && vote === null) {
-			navigate('/not-found')
-		} else {
-			setLoading(false)
+		if (!loading) {
+			if (vote === null) {
+				navigate('/not-found')
+			} else {
+				setLoading(false)
+			}
 		}
 	}, [vote, loading, navigate])
 

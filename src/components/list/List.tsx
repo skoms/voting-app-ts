@@ -11,16 +11,7 @@ export const List: React.FC<ListProps> = ({ listItems }: ListProps) => {
 		<div>
 			{listItems?.map((item, idx) => {
 				if ('votes' in item) {
-					return (
-						<Vote
-							id={item.id}
-							isActive={item.isActive}
-							title={item.title}
-							timeLeft={item.timeLeft}
-							votes={item.votes}
-							key={idx}
-						/>
-					)
+					return <Vote {...item} key={idx} />
 				} else {
 					return <React.Fragment />
 				}

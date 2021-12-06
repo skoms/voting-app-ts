@@ -10,10 +10,9 @@ export const voteModalSlice = createSlice({
 	initialState,
 	reducers: {
 		toggleIsActive: (state, { payload }) => {
-			return {
-				...state,
-				isActive: payload || !state.isActive,
-			}
+			const result = state
+			result.isActive = payload !== undefined ? payload : !state.isActive
+			return result
 		},
 	},
 })

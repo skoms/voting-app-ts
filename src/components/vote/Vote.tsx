@@ -13,6 +13,7 @@ interface VoteProps {
 	votes: number
 	timeLeft: string
 	isActive: boolean
+	voted: boolean
 }
 
 export const Vote: React.FC<VoteProps> = ({
@@ -21,6 +22,7 @@ export const Vote: React.FC<VoteProps> = ({
 	votes,
 	timeLeft,
 	isActive,
+	voted,
 }: VoteProps) => {
 	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
@@ -39,18 +41,21 @@ export const Vote: React.FC<VoteProps> = ({
 				{isActive ? `Time left: ${timeLeft}` : 'Vote Ended'}
 			</p>
 			<div className={styles.buttons}>
-				<Button
-					content='View'
-					buttontype='primary'
-					animation='pulsating'
-					onClick={() => navigate(`/votes/${id}`)}
-				/>
-				{isActive && (
+				{voted || !isActive ? (
 					<Button
-						content='Vote'
-						buttontype='secondary'
-						onClick={() => openModal(id, votesArr)}
+						content='View'
+						buttontype='primary'
+						animation='pulsating'
+						onClick={() => navigate(`/votes/${id}`)}
 					/>
+				) : (
+					isActive && (
+						<Button
+							content='Vote'
+							buttontype='secondary'
+							onClick={() => openModal(id, votesArr)}
+						/>
+					)
 				)}
 			</div>
 		</div>
