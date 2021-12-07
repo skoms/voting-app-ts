@@ -8,6 +8,7 @@ import { selectVotes } from '../../components/voteSlice'
 import { ChartData, selectVote, setVote } from './voteDisplaySlice'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
+import { Button } from '../../components/button/Button'
 
 export const VoteDisplay: React.FC = () => {
 	const { id } = useParams()
@@ -75,6 +76,12 @@ export const VoteDisplay: React.FC = () => {
 					The vote is still active for another: {vote.timeLeft}
 				</p>
 			)}
+			<Button
+				className={styles.backButton}
+				content='Back'
+				buttontype='primary'
+				onClick={() => navigate('/')}
+			/>
 			<h2 className={styles.title}>{vote.title}</h2>
 			<div className={styles.chartContainer}>{data && <Pie data={data} />}</div>
 			<p className={styles.votes}>Total Votes: {vote.votes}</p>
