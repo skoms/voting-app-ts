@@ -1,6 +1,7 @@
 import React from 'react'
 import { Vote } from '../vote/Vote'
 import { VoteData } from '../voteSlice'
+import styles from './List.module.css'
 
 interface ListProps {
 	listItems: VoteData[]
@@ -8,7 +9,7 @@ interface ListProps {
 
 export const List: React.FC<ListProps> = ({ listItems }: ListProps) => {
 	return (
-		<div>
+		<div className={styles.container}>
 			{listItems?.map((item, idx) => {
 				if ('votes' in item) {
 					return <Vote {...item} key={idx} />
